@@ -3,28 +3,21 @@
 {% block content %}
 <div class="container mt-5">
     <h2 class="text-center">Schedule Service Appointment</h2>
-    <form method="POST" action="/schedule_service" class="mt-4">
-        <div class="mb-3">
-            <label for="customer_id" class="form-label">Customer ID</label>
-            <input type="number" class="form-control" id="customer_id" name="customer_id" required>
-        </div>
-        <div class="mb-3">
-            <label for="vehicle_id" class="form-label">Vehicle ID</label>
-            <input type="number" class="form-control" id="vehicle_id" name="vehicle_id" required>
-        </div>
-        <div class="mb-3">
-            <label for="appt_date" class="form-label">Appointment Date</label>
-            <input type="date" class="form-control" id="appt_date" name="appt_date" required>
-        </div>
-        <div class="mb-3">
-            <label for="arrival_time" class="form-label">Arrival Time</label>
-            <input type="time" class="form-control" id="arrival_time" name="arrival_time" required>
-        </div>
-        <div class="mb-3">
-            <label for="completion_time" class="form-label">Completion Time</label>
-            <input type="time" class="form-control" id="completion_time" name="completion_time">
-        </div>
-        <button type="submit" class="btn btn-success">Schedule Appointment</button>
+    <form method="POST" action="/service">
+        <label for="service_package">Service Package</label>
+        <select name="service_package_id" id="service_package" required>
+            <option value="">Select a Package</option>
+            {% for package in service_packages %}
+                <option value="{{ package.pkg_id }}">{{ package.pkg_name }} - ${{ package.base_cost }}</option>
+            {% endfor %}
+        </select>
+        <label for="vehicle_id">Vehicle ID</label>
+        <input type="text" name="vehicle_id" id="vehicle_id" placeholder="Enter Vehicle ID" required>
+        <label for="appt_date">Appointment Date</label>
+        <input type="date" name="appt_date" id="appt_date" required>
+        <label for="arrival_time">Arrival Time</label>
+        <input type="time" name="arrival_time" id="arrival_time" required>
+        <button type="submit">Schedule</button>
     </form>
 </div>
 {% endblock %}

@@ -1,9 +1,10 @@
 import logging
 from flask import Blueprint, request, jsonify, render_template, redirect, url_for, flash, send_file
-from app.models import db, Customer, Vehicle, ServiceAppointment, SalesStats
+from app.models import db, Customer, Vehicle, ServiceAppointment, SalesStats, ServicePackage
 from datetime import datetime
 from reportlab.pdfgen import canvas
 import os
+import tempfile
 
 # Initialize the logger
 logging.basicConfig(
@@ -122,11 +123,6 @@ def sell_car():
             logging.error(f"Error in car sale: {e}")
             flash("An error occurred during the car sale process.", "danger")
             return redirect('/sell_car')
-
-
-
-
-import tempfile
 
 @bp.route('/bill/<int:vehicle_id>', methods=['GET'])
 def generate_bill(vehicle_id):
@@ -255,3 +251,138 @@ def handle_add_customer():
             logging.error(f"Error adding customer: {e}")
             flash("An error occurred while adding the customer.", "danger")
     return render_template('add_customer.html')
+
+@bp.route('/service', methods=['GET', 'POST'])
+def schedule_service():
+    """Handle scheduling a service appointment."""
+    if request.method == 'GET':
+        logging.info("Accessed Service Scheduling page.")
+        service_packages = ServicePackage.query.all()
+        return render_template('schedule_service.html', service_packages=service_packages)
+
+
+    if request.method == 'POST':
+        try:
+            # Extract form data
+            data = request.form
+            service_package_id = data.get('service_package_id')
+            vehicle_id = data.get('vehicle_id')
+            appt_date = data.get('appt_date')
+            arrival_time = data.get('arrival_time')
+
+            # Validate form inputs
+            if not all([service_package_id, vehicle_id, appt_date, arrival_time]):
+                logging.error("Missing required form fields for scheduling a service.")
+                flash("All fields are required.", "danger")
+                return redirect('/service')
+
+            # Validate service package
+            service_package = ServicePackage.query.get(service_package_id)
+            if not service_package:
+                logging.warning(f"Service package not found: {service_package_id}")
+                flash("Invalid service package selected.", "danger")
+                return redirect('/service')
+
+            # Validate vehicle
+            vehicle = Vehicle.query.get(vehicle_id)
+            if not vehicle:
+                logging.error(f"Invalid vehicle ID: {vehicle_id}")
+                flash("Invalid vehicle ID.", "danger")
+                return redirect('/service')
+
+            # Schedule the service
+            appointment = ServiceAppointment(
+                appt_date=datetime.strptime(appt_date, '%Y-%m-%d').date(),
+                arrival_time=datetime.strptime(arrival_time, '%H:%M').time(),
+                service_customer_id=vehicle.owner_id,
+                vehicle_serviced_id=vehicle_id,
+                total_cost=service_package.base_cost,
+                created_at=datetime.now().date(),
+                updated_at=datetime.now().date(),
+            )
+            db.session.add(appointment)
+            db.session.commit()
+
+            logging.info(f"Service appointment scheduled: {appointment.appt_id}")
+            flash("Service appointment scheduled successfully!", "success")
+            return redirect(url_for('routes.generate_service_bill', appointment_id=appointment.appt_id))
+
+        except Exception as e:
+            logging.error(f"Error scheduling service: {e}")
+            flash("An error occurred while scheduling the service.", "danger")
+            return redirect('/service')
+
+
+        
+
+import os
+from flask import send_file
+
+@bp.route('/service_bill/<int:appointment_id>', methods=['GET'])
+def generate_service_bill(appointment_id):
+    """Generate and display or download the service bill."""
+    try:
+        # Fetch appointment, customer, and vehicle details
+        appointment = ServiceAppointment.query.get(appointment_id)
+        if not appointment:
+            logging.warning(f"Service appointment not found: {appointment_id}")
+            flash("Service appointment not found.", "danger")
+            return redirect('/service')
+
+        customer = appointment.customer
+        vehicle = appointment.vehicle
+        if not customer or not vehicle:
+            logging.warning(f"Missing customer or vehicle details for Appointment ID: {appointment_id}")
+            flash("Associated customer or vehicle details are missing.", "danger")
+            return redirect('/service')
+
+        # Prepare data for the bill
+        bill_data = {
+            "customer_name": f"{customer.first_name} {customer.last_name}",
+            "customer_phone": customer.phone or "N/A",
+            "customer_email": customer.email or "N/A",
+            "vehicle_details": f"{vehicle.make} {vehicle.model} ({vehicle.year})",
+            "appt_date": appointment.appt_date.strftime('%Y-%m-%d'),
+            "arrival_time": appointment.arrival_time.strftime('%H:%M'),
+            "completion_time": appointment.completion_time.strftime('%H:%M') if appointment.completion_time else "N/A",
+            "total_cost": f"${appointment.total_cost:.2f}" if appointment.total_cost else "N/A",
+        }
+
+        # Ensure the directory exists
+        temp_dir = os.path.join(os.path.dirname(__file__), 'temp')
+        if not os.path.exists(temp_dir):
+            os.makedirs(temp_dir)
+
+        # Generate the PDF
+        pdf_file = os.path.join(temp_dir, f"service_bill_{appointment_id}.pdf")
+        c = canvas.Canvas(pdf_file)
+        c.setFont("Helvetica-Bold", 14)
+        c.drawString(100, 800, "Car Dealership Service Bill")
+        c.setFont("Helvetica", 12)
+        c.drawString(100, 770, f"Customer Name: {bill_data['customer_name']}")
+        c.drawString(100, 750, f"Phone: {bill_data['customer_phone']}")
+        c.drawString(100, 730, f"Email: {bill_data['customer_email']}")
+        c.drawString(100, 710, f"Vehicle: {bill_data['vehicle_details']}")
+        c.drawString(100, 690, f"Appointment Date: {bill_data['appt_date']}")
+        c.drawString(100, 670, f"Arrival Time: {bill_data['arrival_time']}")
+        c.drawString(100, 650, f"Completion Time: {bill_data['completion_time']}")
+        c.drawString(100, 630, f"Total Cost: {bill_data['total_cost']}")
+        c.drawString(100, 600, "Thank you for your business!")
+        c.save()
+
+        # Serve the PDF
+        return send_file(
+            pdf_file,
+            as_attachment=True,
+            download_name=f"service_bill_{appointment_id}.pdf",
+            mimetype='application/pdf'
+        )
+
+    except Exception as e:
+        logging.error(f"Error generating service bill: {e}")
+        flash("An error occurred while generating the service bill.", "danger")
+        return redirect('/service')
+    finally:
+        # Cleanup: Remove the generated PDF file after it is served
+        if os.path.exists(pdf_file):
+            os.remove(pdf_file)
