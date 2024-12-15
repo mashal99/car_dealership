@@ -1,7 +1,9 @@
 import logging
-from flask import Blueprint, request, jsonify, render_template, redirect, url_for, flash
+from flask import Blueprint, request, jsonify, render_template, redirect, url_for, flash, send_file
 from app.models import db, Customer, Vehicle, ServiceAppointment, SalesStats
 from datetime import datetime
+from reportlab.pdfgen import canvas
+import os
 
 # Initialize the logger
 logging.basicConfig(
@@ -81,8 +83,10 @@ def sell_car():
             vehicle.owner_id = customer_id
 
             # Update customer details
-            customer.total_spent += Decimal(sale_price)
-            customer.total_profit += vehicle.profit
+            # Update customer details
+            customer.total_spent = (customer.total_spent or Decimal(0)) + Decimal(sale_price)
+            customer.total_profit = (customer.total_profit or Decimal(0)) + vehicle.profit
+
 
             # Update/Add sales stats
             stats = db.session.query(SalesStats).filter(
@@ -111,16 +115,22 @@ def sell_car():
                 f"Car sold: Vehicle ID {vehicle_id} to Customer ID {customer_id}. Stats updated."
             )
             flash("Car sale recorded successfully!", "success")
-            return redirect('/sell_car')
+            # Redirect to bill page
+            return redirect(url_for('routes.generate_bill', vehicle_id=vehicle.vehicle_id))
+    
         except Exception as e:
             logging.error(f"Error in car sale: {e}")
             flash("An error occurred during the car sale process.", "danger")
             return redirect('/sell_car')
 
 
+
+
+import tempfile
+
 @bp.route('/bill/<int:vehicle_id>', methods=['GET'])
 def generate_bill(vehicle_id):
-    """Generate and display the bill for a car sale."""
+    """Generate and display or download the bill."""
     try:
         # Fetch the vehicle details
         vehicle = Vehicle.query.get(vehicle_id)
@@ -139,49 +149,54 @@ def generate_bill(vehicle_id):
         # Prepare data for the bill
         bill_data = {
             "customer_name": f"{customer.first_name} {customer.last_name}",
-            "customer_phone": customer.phone,
-            "customer_email": customer.email,
+            "customer_phone": customer.phone or "N/A",
+            "customer_email": customer.email or "N/A",
             "vehicle_make": vehicle.make,
             "vehicle_model": vehicle.model,
             "vehicle_year": vehicle.year,
             "vehicle_vin": vehicle.vin,
-            "sale_price": f"${vehicle.sale_price:.2f}",
+            "sale_price": f"${vehicle.sale_price:.2f}" if vehicle.sale_price else "N/A",
             "sale_date": vehicle.sold_at.strftime('%Y-%m-%d') if vehicle.sold_at else "N/A",
-            "profit": f"${vehicle.profit:.2f}",
+            "profit": f"${vehicle.profit:.2f}" if vehicle.profit else "N/A",
         }
 
-        logging.info(f"Bill generated for Vehicle ID: {vehicle_id}")
-        return render_template('bill.html', bill_data=bill_data)
+        # Generate the PDF using ReportLab
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
+            pdf_file = tmp_file.name
+            c = canvas.Canvas(pdf_file)
+            c.setFont("Helvetica-Bold", 14)
+            c.drawString(100, 800, "Car Dealership Bill")
+            c.setFont("Helvetica", 12)
+            c.drawString(100, 770, f"Customer Name: {bill_data['customer_name']}")
+            c.drawString(100, 750, f"Phone: {bill_data['customer_phone']}")
+            c.drawString(100, 730, f"Email: {bill_data['customer_email']}")
+            c.drawString(100, 710, f"Vehicle: {bill_data['vehicle_make']} {bill_data['vehicle_model']} ({bill_data['vehicle_year']})")
+            c.drawString(100, 690, f"VIN: {bill_data['vehicle_vin']}")
+            c.drawString(100, 670, f"Sale Price: {bill_data['sale_price']}")
+            c.drawString(100, 650, f"Sale Date: {bill_data['sale_date']}")
+            c.drawString(100, 630, f"Profit: {bill_data['profit']}")
+            c.drawString(100, 600, "Thank you for your business!")
+            c.save()
+
+        # Serve the PDF as a downloadable file
+        return send_file(
+            pdf_file,
+            as_attachment=True,
+            download_name=f"bill_{vehicle_id}.pdf",
+            mimetype='application/pdf'
+        )
 
     except Exception as e:
         logging.error(f"Error generating bill: {e}")
         flash("An error occurred while generating the bill.", "danger")
         return redirect('/sell_car')
+    finally:
+        # Cleanup: Remove the generated PDF file after it is served
+        if 'pdf_file' in locals() and os.path.exists(pdf_file):
+            os.remove(pdf_file)
 
 
-@bp.route('/schedule_service', methods=['GET', 'POST'])
-def schedule_service_page():
-    """Handle service scheduling."""
-    if request.method == 'POST':
-        try:
-            data = request.form
-            appointment = ServiceAppointment(
-                appt_date=datetime.strptime(data['appt_date'], '%Y-%m-%d').date(),
-                arrival_time=datetime.strptime(data['arrival_time'], '%H:%M').time(),
-                service_customer_id=int(data['service_customer_id']),
-                vehicle_serviced_id=int(data['vehicle_serviced_id']),
-                created_at=datetime.now(),
-                updated_at=datetime.now()
-            )
-            db.session.add(appointment)
-            db.session.commit()
-            logging.info(f"Service scheduled for Customer ID: {data['service_customer_id']}")
-            flash("Service appointment scheduled successfully!", "success")
-        except Exception as e:
-            logging.error(f"Error scheduling service: {e}")
-            flash("An error occurred while scheduling the service.", "danger")
-    return render_template('schedule_service.html')
-
+    
 @bp.route('/sales_statistics', methods=['GET', 'POST'])
 def sales_statistics_page():
     """Retrieve and display sales statistics."""

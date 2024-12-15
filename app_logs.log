@@ -9,3 +9,37 @@
 2024-12-15 03:00:00,047 - INFO - 127.0.0.1 - - [15/Dec/2024 03:00:00] "[32mPOST /sell_car HTTP/1.1[0m" 302 -
 2024-12-15 03:00:00,054 - INFO - Accessed Sell Car page.
 2024-12-15 03:00:00,054 - INFO - 127.0.0.1 - - [15/Dec/2024 03:00:00] "GET /sell_car HTTP/1.1" 200 -
+2024-12-15 03:55:42,219 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-15 03:55:42,219 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 03:55:49,277 - INFO - Accessed homepage.
+2024-12-15 03:55:49,282 - INFO - 127.0.0.1 - - [15/Dec/2024 03:55:49] "GET / HTTP/1.1" 200 -
+2024-12-15 03:55:50,931 - INFO - Accessed Sell Car page.
+2024-12-15 03:55:50,934 - INFO - 127.0.0.1 - - [15/Dec/2024 03:55:50] "GET /sell_car HTTP/1.1" 200 -
+2024-12-15 03:56:11,831 - ERROR - Error in car sale: unsupported operand type(s) for +=: 'NoneType' and 'decimal.Decimal'
+2024-12-15 03:56:11,832 - INFO - 127.0.0.1 - - [15/Dec/2024 03:56:11] "[32mPOST /sell_car HTTP/1.1[0m" 302 -
+2024-12-15 03:56:11,840 - INFO - Accessed Sell Car page.
+2024-12-15 03:56:11,840 - INFO - 127.0.0.1 - - [15/Dec/2024 03:56:11] "GET /sell_car HTTP/1.1" 200 -
+2024-12-15 03:59:36,642 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-15 03:59:36,642 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 03:59:48,516 - INFO - Accessed homepage.
+2024-12-15 03:59:48,522 - INFO - 127.0.0.1 - - [15/Dec/2024 03:59:48] "GET / HTTP/1.1" 200 -
+2024-12-15 03:59:49,822 - INFO - Accessed Sell Car page.
+2024-12-15 03:59:49,825 - INFO - 127.0.0.1 - - [15/Dec/2024 03:59:49] "GET /sell_car HTTP/1.1" 200 -
+2024-12-15 04:00:22,185 - INFO - Car sold: Vehicle ID 1 to Customer ID 5. Stats updated.
+2024-12-15 04:00:22,187 - INFO - 127.0.0.1 - - [15/Dec/2024 04:00:22] "[32mPOST /sell_car HTTP/1.1[0m" 302 -
+2024-12-15 04:00:22,199 - ERROR - Error generating bill: [Errno 2] No such file or directory: '/Users/ahmedmashaal/Desktop/CS631/car_dealership/app/bill_1.pdf'
+2024-12-15 04:00:22,201 - INFO - 127.0.0.1 - - [15/Dec/2024 04:00:22] "[32mGET /bill/1 HTTP/1.1[0m" 302 -
+2024-12-15 04:00:22,209 - INFO - Accessed Sell Car page.
+2024-12-15 04:00:22,209 - INFO - 127.0.0.1 - - [15/Dec/2024 04:00:22] "GET /sell_car HTTP/1.1" 200 -
+2024-12-15 04:02:29,878 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-15 04:02:29,879 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 04:02:35,690 - INFO - Accessed homepage.
+2024-12-15 04:02:35,696 - INFO - 127.0.0.1 - - [15/Dec/2024 04:02:35] "GET / HTTP/1.1" 200 -
+2024-12-15 04:02:36,847 - INFO - Accessed Sell Car page.
+2024-12-15 04:02:36,851 - INFO - 127.0.0.1 - - [15/Dec/2024 04:02:36] "GET /sell_car HTTP/1.1" 200 -
+2024-12-15 04:02:52,177 - INFO - Car sold: Vehicle ID 2 to Customer ID 5. Stats updated.
+2024-12-15 04:02:52,180 - INFO - 127.0.0.1 - - [15/Dec/2024 04:02:52] "[32mPOST /sell_car HTTP/1.1[0m" 302 -
+2024-12-15 04:02:52,198 - INFO - 127.0.0.1 - - [15/Dec/2024 04:02:52] "GET /bill/2 HTTP/1.1" 200 -
