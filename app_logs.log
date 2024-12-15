@@ -1,100 +1,75 @@
-2024-12-15 04:19:37,273 - INFO - 127.0.0.1 - - [15/Dec/2024 04:19:37] "GET /service HTTP/1.1" 200 -
-2024-12-15 04:22:33,568 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2024-12-15 13:03:02,573 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
-2024-12-15 04:22:33,568 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-15 04:22:45,229 - INFO - Accessed homepage.
-2024-12-15 04:22:45,234 - INFO - 127.0.0.1 - - [15/Dec/2024 04:22:45] "GET / HTTP/1.1" 200 -
-2024-12-15 04:22:46,619 - INFO - Accessed Service Scheduling page.
-2024-12-15 04:22:46,675 - INFO - 127.0.0.1 - - [15/Dec/2024 04:22:46] "GET /service HTTP/1.1" 200 -
-2024-12-15 04:23:10,879 - WARNING - Service package not found: None
-2024-12-15 04:23:10,881 - INFO - 127.0.0.1 - - [15/Dec/2024 04:23:10] "[32mPOST /service HTTP/1.1[0m" 302 -
-2024-12-15 04:23:10,887 - INFO - Accessed Service Scheduling page.
-2024-12-15 04:23:10,890 - INFO - 127.0.0.1 - - [15/Dec/2024 04:23:10] "GET /service HTTP/1.1" 200 -
-2024-12-15 04:25:18,218 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-15 04:25:18,219 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-15 04:25:20,345 - INFO - Accessed Service Scheduling page.
-2024-12-15 04:25:20,363 - INFO - 127.0.0.1 - - [15/Dec/2024 04:25:20] "GET /service HTTP/1.1" 200 -
-2024-12-15 04:25:50,140 - WARNING - Service package not found: None
-2024-12-15 04:25:50,141 - INFO - 127.0.0.1 - - [15/Dec/2024 04:25:50] "[32mPOST /service HTTP/1.1[0m" 302 -
-2024-12-15 04:25:50,193 - INFO - Accessed Service Scheduling page.
-2024-12-15 04:25:50,199 - INFO - 127.0.0.1 - - [15/Dec/2024 04:25:50] "GET /service HTTP/1.1" 200 -
-2024-12-15 04:49:38,848 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-15 04:49:38,848 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-15 04:49:46,424 - INFO - Accessed homepage.
-2024-12-15 04:49:46,428 - INFO - 127.0.0.1 - - [15/Dec/2024 04:49:46] "GET / HTTP/1.1" 200 -
-2024-12-15 04:49:48,385 - INFO - Accessed Service Scheduling page.
-2024-12-15 04:49:48,403 - ERROR - Exception on /service [GET]
-Traceback (most recent call last):
-  File "/Users/ahmedmashaal/Desktop/CS631/car_dealership/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/ahmedmashaal/Desktop/CS631/car_dealership/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/ahmedmashaal/Desktop/CS631/car_dealership/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/ahmedmashaal/Desktop/CS631/car_dealership/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/ahmedmashaal/Desktop/CS631/car_dealership/app/routes.py", line 261, in schedule_service
-    return render_template('service.html', service_packages=service_packages)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/ahmedmashaal/Desktop/CS631/car_dealership/venv/lib/python3.11/site-packages/flask/templating.py", line 149, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/ahmedmashaal/Desktop/CS631/car_dealership/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1084, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/ahmedmashaal/Desktop/CS631/car_dealership/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1013, in get_template
-    return self._load_template(name, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/ahmedmashaal/Desktop/CS631/car_dealership/venv/lib/python3.11/site-packages/jinja2/environment.py", line 972, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/ahmedmashaal/Desktop/CS631/car_dealership/venv/lib/python3.11/site-packages/jinja2/loaders.py", line 126, in load
-    source, filename, uptodate = self.get_source(environment, name)
-                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/ahmedmashaal/Desktop/CS631/car_dealership/venv/lib/python3.11/site-packages/flask/templating.py", line 65, in get_source
-    return self._get_source_fast(environment, template)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/ahmedmashaal/Desktop/CS631/car_dealership/venv/lib/python3.11/site-packages/flask/templating.py", line 99, in _get_source_fast
-    raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: service.html
-2024-12-15 04:49:48,406 - INFO - 127.0.0.1 - - [15/Dec/2024 04:49:48] "[35m[1mGET /service HTTP/1.1[0m" 500 -
-2024-12-15 04:52:51,808 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-15 04:52:51,808 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-15 04:52:58,512 - INFO - Accessed homepage.
-2024-12-15 04:52:58,516 - INFO - 127.0.0.1 - - [15/Dec/2024 04:52:58] "GET / HTTP/1.1" 200 -
-2024-12-15 04:52:59,868 - INFO - Accessed Service Scheduling page.
-2024-12-15 04:52:59,891 - INFO - 127.0.0.1 - - [15/Dec/2024 04:52:59] "GET /service HTTP/1.1" 200 -
-2024-12-15 04:53:18,267 - INFO - Service appointment scheduled: 3
-2024-12-15 04:53:18,276 - INFO - 127.0.0.1 - - [15/Dec/2024 04:53:18] "[32mPOST /service HTTP/1.1[0m" 302 -
-2024-12-15 04:53:18,296 - ERROR - Error generating service bill: [Errno 2] No such file or directory: '/Users/ahmedmashaal/Desktop/CS631/car_dealership/app/temp/service_bill_3.pdf'
-2024-12-15 04:53:18,296 - INFO - 127.0.0.1 - - [15/Dec/2024 04:53:18] "[32mGET /service_bill/3 HTTP/1.1[0m" 302 -
-2024-12-15 04:53:18,302 - INFO - Accessed Service Scheduling page.
-2024-12-15 04:53:18,304 - INFO - 127.0.0.1 - - [15/Dec/2024 04:53:18] "GET /service HTTP/1.1" 200 -
-2024-12-15 04:54:52,289 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-15 04:54:52,290 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-15 04:55:23,658 - INFO - Accessed homepage.
-2024-12-15 04:55:23,662 - INFO - 127.0.0.1 - - [15/Dec/2024 04:55:23] "GET / HTTP/1.1" 200 -
-2024-12-15 04:55:24,926 - INFO - Accessed Service Scheduling page.
-2024-12-15 04:55:24,945 - INFO - 127.0.0.1 - - [15/Dec/2024 04:55:24] "GET /service HTTP/1.1" 200 -
-2024-12-15 04:55:42,745 - INFO - Service appointment scheduled: 4
-2024-12-15 04:55:42,747 - INFO - 127.0.0.1 - - [15/Dec/2024 04:55:42] "[32mPOST /service HTTP/1.1[0m" 302 -
-2024-12-15 04:55:42,775 - INFO - 127.0.0.1 - - [15/Dec/2024 04:55:42] "GET /service_bill/4 HTTP/1.1" 200 -
-2024-12-15 05:00:47,467 - INFO - 127.0.0.1 - - [15/Dec/2024 05:00:47] "GET /sales_statistics HTTP/1.1" 200 -
-2024-12-15 05:07:53,274 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-15 05:07:53,274 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-15 05:07:58,297 - INFO - Accessed homepage.
-2024-12-15 05:07:58,301 - INFO - 127.0.0.1 - - [15/Dec/2024 05:07:58] "GET / HTTP/1.1" 200 -
-2024-12-15 05:08:00,844 - INFO - 127.0.0.1 - - [15/Dec/2024 05:08:00] "GET /sales_statistics HTTP/1.1" 200 -
-2024-12-15 05:08:15,120 - INFO - Sales statistics retrieved for period: 2020-08-07 to 2024-12-15
-2024-12-15 05:08:15,121 - INFO - 127.0.0.1 - - [15/Dec/2024 05:08:15] "POST /sales_statistics HTTP/1.1" 200 -
-2024-12-15 05:08:28,465 - INFO - Accessed homepage.
-2024-12-15 05:08:28,466 - INFO - 127.0.0.1 - - [15/Dec/2024 05:08:28] "GET / HTTP/1.1" 200 -
+2024-12-15 13:03:02,573 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 13:03:08,605 - INFO - Accessed homepage.
+2024-12-15 13:03:08,610 - INFO - 127.0.0.1 - - [15/Dec/2024 13:03:08] "GET / HTTP/1.1" 200 -
+2024-12-15 13:03:15,573 - INFO - Accessed Sell Car page.
+2024-12-15 13:03:15,577 - INFO - 127.0.0.1 - - [15/Dec/2024 13:03:15] "GET /sell_car HTTP/1.1" 200 -
+2024-12-15 13:03:34,705 - INFO - Accessed Sell Car page.
+2024-12-15 13:03:34,707 - INFO - 127.0.0.1 - - [15/Dec/2024 13:03:34] "GET /sell_car HTTP/1.1" 200 -
+2024-12-15 13:04:02,909 - INFO - 127.0.0.1 - - [15/Dec/2024 13:04:02] "[33mGET /schedule_service HTTP/1.1[0m" 404 -
+2024-12-15 13:04:07,860 - INFO - Accessed Service Scheduling page.
+2024-12-15 13:04:07,938 - INFO - 127.0.0.1 - - [15/Dec/2024 13:04:07] "GET /service HTTP/1.1" 200 -
+2024-12-15 13:05:01,104 - INFO - Service appointment scheduled: 5
+2024-12-15 13:05:01,106 - INFO - 127.0.0.1 - - [15/Dec/2024 13:05:01] "[32mPOST /service HTTP/1.1[0m" 302 -
+2024-12-15 13:05:01,180 - INFO - 127.0.0.1 - - [15/Dec/2024 13:05:01] "GET /service_bill/5 HTTP/1.1" 200 -
+2024-12-15 13:05:37,516 - INFO - Service appointment scheduled: 6
+2024-12-15 13:05:37,518 - INFO - 127.0.0.1 - - [15/Dec/2024 13:05:37] "[32mPOST /service HTTP/1.1[0m" 302 -
+2024-12-15 13:05:37,535 - INFO - 127.0.0.1 - - [15/Dec/2024 13:05:37] "GET /service_bill/6 HTTP/1.1" 200 -
+2024-12-15 13:05:39,420 - INFO - 127.0.0.1 - - [15/Dec/2024 13:05:39] "GET /sales_statistics HTTP/1.1" 200 -
+2024-12-15 13:06:26,683 - INFO - Sales statistics retrieved for period: 2018-01-01 to 2024-12-15
+2024-12-15 13:06:26,685 - INFO - 127.0.0.1 - - [15/Dec/2024 13:06:26] "POST /sales_statistics HTTP/1.1" 200 -
+2024-12-15 13:17:24,336 - INFO - Accessed homepage.
+2024-12-15 13:17:24,338 - INFO - 127.0.0.1 - - [15/Dec/2024 13:17:24] "GET / HTTP/1.1" 200 -
+2024-12-15 13:17:50,967 - INFO - Accessed Sell Car page.
+2024-12-15 13:17:50,968 - INFO - 127.0.0.1 - - [15/Dec/2024 13:17:50] "GET /sell_car HTTP/1.1" 200 -
+2024-12-15 13:18:09,893 - INFO - Car sold: Vehicle ID 2 to Customer ID 5. Stats updated.
+2024-12-15 13:18:09,901 - INFO - 127.0.0.1 - - [15/Dec/2024 13:18:09] "[32mPOST /sell_car HTTP/1.1[0m" 302 -
+2024-12-15 13:18:09,921 - INFO - 127.0.0.1 - - [15/Dec/2024 13:18:09] "GET /bill/2 HTTP/1.1" 200 -
+2024-12-15 13:18:43,120 - INFO - Accessed homepage.
+2024-12-15 13:18:43,121 - INFO - 127.0.0.1 - - [15/Dec/2024 13:18:43] "GET / HTTP/1.1" 200 -
+2024-12-15 13:18:46,433 - INFO - Accessed Service Scheduling page.
+2024-12-15 13:18:46,436 - INFO - 127.0.0.1 - - [15/Dec/2024 13:18:46] "GET /service HTTP/1.1" 200 -
+2024-12-15 13:19:08,587 - INFO - 127.0.0.1 - - [15/Dec/2024 13:19:08] "GET /sales_statistics HTTP/1.1" 200 -
+2024-12-15 13:19:42,601 - INFO - Sales statistics retrieved for period: 2020-01-02 to 2024-12-15
+2024-12-15 13:19:42,603 - INFO - 127.0.0.1 - - [15/Dec/2024 13:19:42] "POST /sales_statistics HTTP/1.1" 200 -
+2024-12-15 13:20:35,372 - INFO - Accessed homepage.
+2024-12-15 13:20:35,372 - INFO - 127.0.0.1 - - [15/Dec/2024 13:20:35] "GET / HTTP/1.1" 200 -
+2024-12-15 13:29:56,614 - INFO - Accessed Sell Car page.
+2024-12-15 13:29:56,616 - INFO - 127.0.0.1 - - [15/Dec/2024 13:29:56] "GET /sell_car HTTP/1.1" 200 -
+2024-12-15 13:30:47,419 - INFO - New customer added: Ted Lasso (ID: 7)
+2024-12-15 13:30:47,428 - INFO - Car sold: Vehicle ID 2 to Customer ID 7. Stats updated.
+2024-12-15 13:30:47,430 - INFO - 127.0.0.1 - - [15/Dec/2024 13:30:47] "[32mPOST /sell_car HTTP/1.1[0m" 302 -
+2024-12-15 13:30:47,445 - INFO - 127.0.0.1 - - [15/Dec/2024 13:30:47] "GET /bill/2 HTTP/1.1" 200 -
+2024-12-15 13:31:44,693 - INFO - Accessed Service Scheduling page.
+2024-12-15 13:31:44,698 - INFO - 127.0.0.1 - - [15/Dec/2024 13:31:44] "GET /service HTTP/1.1" 200 -
+2024-12-15 13:32:21,999 - INFO - Service appointment scheduled: 7
+2024-12-15 13:32:22,002 - INFO - 127.0.0.1 - - [15/Dec/2024 13:32:22] "[32mPOST /service HTTP/1.1[0m" 302 -
+2024-12-15 13:32:22,018 - INFO - 127.0.0.1 - - [15/Dec/2024 13:32:22] "GET /service_bill/7 HTTP/1.1" 200 -
+2024-12-15 13:32:35,669 - INFO - Accessed homepage.
+2024-12-15 13:32:35,671 - INFO - 127.0.0.1 - - [15/Dec/2024 13:32:35] "GET / HTTP/1.1" 200 -
+2024-12-15 13:32:42,250 - INFO - 127.0.0.1 - - [15/Dec/2024 13:32:42] "GET /sales_statistics HTTP/1.1" 200 -
+2024-12-15 13:32:58,335 - INFO - Sales statistics retrieved for period: 2021-01-01 to 2024-12-15
+2024-12-15 13:32:58,336 - INFO - 127.0.0.1 - - [15/Dec/2024 13:32:58] "POST /sales_statistics HTTP/1.1" 200 -
+2024-12-15 13:33:12,681 - INFO - Accessed homepage.
+2024-12-15 13:33:12,684 - INFO - 127.0.0.1 - - [15/Dec/2024 13:33:12] "GET / HTTP/1.1" 200 -
+2024-12-15 13:41:05,754 - INFO - Accessed Sell Car page.
+2024-12-15 13:41:05,756 - INFO - 127.0.0.1 - - [15/Dec/2024 13:41:05] "GET /sell_car HTTP/1.1" 200 -
+2024-12-15 13:41:52,766 - INFO - Car sold: Vehicle ID 1 to Customer ID 5. Stats updated.
+2024-12-15 13:41:52,772 - INFO - 127.0.0.1 - - [15/Dec/2024 13:41:52] "[32mPOST /sell_car HTTP/1.1[0m" 302 -
+2024-12-15 13:41:52,790 - INFO - 127.0.0.1 - - [15/Dec/2024 13:41:52] "GET /bill/1 HTTP/1.1" 200 -
+2024-12-15 13:42:38,522 - INFO - Car sold: Vehicle ID 1 to Customer ID 5. Stats updated.
+2024-12-15 13:42:38,525 - INFO - 127.0.0.1 - - [15/Dec/2024 13:42:38] "[32mPOST /sell_car HTTP/1.1[0m" 302 -
+2024-12-15 13:42:38,542 - INFO - 127.0.0.1 - - [15/Dec/2024 13:42:38] "GET /bill/1 HTTP/1.1" 200 -
+2024-12-15 13:43:32,950 - INFO - Accessed homepage.
+2024-12-15 13:43:32,952 - INFO - 127.0.0.1 - - [15/Dec/2024 13:43:32] "GET / HTTP/1.1" 200 -
+2024-12-15 13:43:40,445 - INFO - Accessed Service Scheduling page.
+2024-12-15 13:43:40,461 - INFO - 127.0.0.1 - - [15/Dec/2024 13:43:40] "GET /service HTTP/1.1" 200 -
+2024-12-15 13:44:16,430 - INFO - Service appointment scheduled: 8
+2024-12-15 13:44:16,436 - INFO - 127.0.0.1 - - [15/Dec/2024 13:44:16] "[32mPOST /service HTTP/1.1[0m" 302 -
+2024-12-15 13:44:16,461 - INFO - 127.0.0.1 - - [15/Dec/2024 13:44:16] "GET /service_bill/8 HTTP/1.1" 200 -
+2024-12-15 13:45:00,933 - INFO - 127.0.0.1 - - [15/Dec/2024 13:45:00] "GET /sales_statistics HTTP/1.1" 200 -
+2024-12-15 13:45:16,562 - INFO - Sales statistics retrieved for period: 2022-01-01 to 2024-12-15
+2024-12-15 13:45:16,564 - INFO - 127.0.0.1 - - [15/Dec/2024 13:45:16] "POST /sales_statistics HTTP/1.1" 200 -
+2024-12-15 13:45:25,456 - INFO - Accessed homepage.
+2024-12-15 13:45:25,457 - INFO - 127.0.0.1 - - [15/Dec/2024 13:45:25] "GET / HTTP/1.1" 200 -
