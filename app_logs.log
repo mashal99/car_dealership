@@ -87,3 +87,4 @@ jinja2.exceptions.TemplateNotFound: service.html
 2024-12-15 04:55:42,745 - INFO - Service appointment scheduled: 4
 2024-12-15 04:55:42,747 - INFO - 127.0.0.1 - - [15/Dec/2024 04:55:42] "[32mPOST /service HTTP/1.1[0m" 302 -
 2024-12-15 04:55:42,775 - INFO - 127.0.0.1 - - [15/Dec/2024 04:55:42] "GET /service_bill/4 HTTP/1.1" 200 -
+2024-12-15 05:00:47,467 - INFO - 127.0.0.1 - - [15/Dec/2024 05:00:47] "GET /sales_statistics HTTP/1.1" 200 -
