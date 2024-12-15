@@ -1,0 +1,11 @@
+2024-12-14 22:24:27,643 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-14 22:24:27,644 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-14 22:24:35,252 - INFO - Accessed homepage.
+2024-12-14 22:24:35,259 - INFO - 127.0.0.1 - - [14/Dec/2024 22:24:35] "GET / HTTP/1.1" 200 -
+2024-12-14 22:24:36,905 - INFO - 127.0.0.1 - - [14/Dec/2024 22:24:36] "GET /add_customer HTTP/1.1" 200 -
+2024-12-14 22:24:48,909 - ERROR - Error adding customer: (pymysql.err.OperationalError) (1364, "Field 'customer_id' doesn't have a default value")
+[SQL: INSERT INTO customer (first_name, last_name, phone, email, address, total_spent, total_profit, created_at, updated_at) VALUES (%(first_name)s, %(last_name)s, %(phone)s, %(email)s, %(address)s, %(total_spent)s, %(total_profit)s, %(created_at)s, %(updated_at)s)]
+[parameters: {'first_name': 'a', 'last_name': 'h', 'phone': '232', 'email': 'ama@nj.com', 'address': '123 jwn q', 'total_spent': None, 'total_profit': None, 'created_at': datetime.datetime(2024, 12, 14, 22, 24, 48, 892993), 'updated_at': datetime.datetime(2024, 12, 14, 22, 24, 48, 893001)}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-14 22:24:48,909 - INFO - 127.0.0.1 - - [14/Dec/2024 22:24:48] "[31m[1mPOST /customers HTTP/1.1[0m" 400 -

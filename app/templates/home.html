@@ -1,80 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Dealership Management</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/">Car Dealership</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/add_customer">Add Customer</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/schedule_service">Schedule Service</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/sales_statistics">Sales Statistics</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+{% extends "base.html" %}
 
-    <!-- Main Content -->
-    <div class="container mt-5">
-        <div class="text-center">
-            <h1 class="display-4">Welcome to the Car Dealership Management System</h1>
-            <p class="lead">Manage your customers, sales, and services efficiently with our system.</p>
-        </div>
+{% block title %}Home - Car Dealership Management{% endblock %}
 
-        <div class="row mt-5">
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">Add Customer</h5>
-                        <p class="card-text">Add new customers to the system.</p>
-                        <a href="/add_customer" class="btn btn-primary">Go to Add Customer</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">Schedule Service</h5>
-                        <p class="card-text">Book service appointments for customers.</p>
-                        <a href="/schedule_service" class="btn btn-success">Go to Schedule Service</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">Sales Statistics</h5>
-                        <p class="card-text">Analyze sales and profit data.</p>
-                        <a href="/sales_statistics" class="btn btn-warning">View Sales Statistics</a>
-                    </div>
-                </div>
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Car Dealership Management System</h1>
+    <p class="lead">Manage your customers, sales, and services efficiently with our system.</p>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Add Customer</h5>
+                <p class="card-text">Add new customers to the system.</p>
+                <a href="/add_customer" class="btn btn-primary">Go to Add Customer</a>
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-        <p>&copy; 2024 Car Dealership Management System</p>
-    </footer>
-
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Schedule Service</h5>
+                <p class="card-text">Book service appointments for customers.</p>
+                <a href="/schedule_service" class="btn btn-success">Go to Schedule Service</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Sales Statistics</h5>
+                <p class="card-text">Analyze sales and profit data.</p>
+                <a href="/sales_statistics" class="btn btn-warning">View Sales Statistics</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

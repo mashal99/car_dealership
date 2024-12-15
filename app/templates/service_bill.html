@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Bill</title>
-</head>
-<body>
-    <h1>Service Bill</h1>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Service Bill</h2>
     <p><strong>Customer Name:</strong> {{ customer.first_name }} {{ customer.last_name }}</p>
     <p><strong>Vehicle:</strong> {{ vehicle.make }} {{ vehicle.model }} ({{ vehicle.year }})</p>
     <p><strong>Appointment Date:</strong> {{ appointment.appt_date }}</p>
     <p><strong>Labor Cost:</strong> ${{ appointment.total_cost }}</p>
-    <h2>Thank you for servicing your vehicle with us!</h2>
-</body>
-</html>
+    <h3>Thank you for servicing your vehicle with us!</h3>
+</div>
+{% endblock %}
