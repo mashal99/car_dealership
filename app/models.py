@@ -42,8 +42,9 @@ class ServiceAppointment(db.Model):
     appt_date = db.Column(db.Date)
     arrival_time = db.Column(db.Time)
     completion_time = db.Column(db.Time)
-    service_customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'), nullable=False)
-    vehicle_serviced_id = db.Column(db.Integer, db.ForeignKey('vehicle.vehicle_id'), nullable=False)
+    service_customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'))
+    vehicle_serviced_id = db.Column(db.Integer, db.ForeignKey('vehicle.vehicle_id'))
+    total_cost = db.Column(db.Numeric(10, 2))
     created_at = db.Column(db.Date)
     updated_at = db.Column(db.Date)
 
