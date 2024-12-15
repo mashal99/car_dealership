@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Sell a Car{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Sell a Car</h2>
+    <form action="/sell_car" method="POST">
+        <div class="mb-3">
+            <label for="vehicle_id" class="form-label">Vehicle ID</label>
+            <input type="text" class="form-control" id="vehicle_id" name="vehicle_id" required>
+        </div>
+        <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="sale_price" class="form-label">Sale Price</label>
+            <input type="number" class="form-control" id="sale_price" name="sale_price" required>
+        </div>
+        <div class="mb-3">
+            <label for="sold_at" class="form-label">Sale Date</label>
+            <input type="date" class="form-control" id="sold_at" name="sold_at" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>    
+</div>
+{% endblock %}

@@ -5,33 +5,36 @@
 {% block content %}
 <div class="text-center">
     <h1 class="display-4">Welcome to the Car Dealership Management System</h1>
-    <p class="lead">Manage your customers, sales, and services efficiently with our system.</p>
+    <p class="lead">Manage your sales, services, and statistics with ease.</p>
 </div>
 
 <div class="row mt-5">
+    <!-- Car Sale Button -->
     <div class="col-md-4">
         <div class="card text-center">
             <div class="card-body">
-                <h5 class="card-title">Add Customer</h5>
-                <p class="card-text">Add new customers to the system.</p>
-                <a href="/add_customer" class="btn btn-primary">Go to Add Customer</a>
+                <h5 class="card-title">Car Sale</h5>
+                <p class="card-text">Record a car sale and print the customer bill.</p>
+                <a href="/sell_car" class="btn btn-primary">Go to Car Sale</a>
             </div>
         </div>
     </div>
+    <!-- Service Scheduling Button -->
     <div class="col-md-4">
         <div class="card text-center">
             <div class="card-body">
                 <h5 class="card-title">Schedule Service</h5>
                 <p class="card-text">Book service appointments for customers.</p>
-                <a href="/schedule_service" class="btn btn-success">Go to Schedule Service</a>
+                <a href="/service" class="btn btn-success">Go to Schedule Service</a>
             </div>
         </div>
     </div>
+    <!-- Sales Statistics Button -->
     <div class="col-md-4">
         <div class="card text-center">
             <div class="card-body">
                 <h5 class="card-title">Sales Statistics</h5>
-                <p class="card-text">Analyze sales and profit data.</p>
+                <p class="card-text">Analyze sales and profit data by period.</p>
                 <a href="/sales_statistics" class="btn btn-warning">View Sales Statistics</a>
             </div>
         </div>

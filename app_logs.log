@@ -1,11 +1,11 @@
-2024-12-15 02:18:42,625 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2024-12-15 02:59:41,069 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
-2024-12-15 02:18:42,625 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-15 02:18:50,725 - INFO - Accessed homepage.
-2024-12-15 02:18:50,728 - INFO - 127.0.0.1 - - [15/Dec/2024 02:18:50] "GET / HTTP/1.1" 200 -
-2024-12-15 02:18:52,102 - INFO - 127.0.0.1 - - [15/Dec/2024 02:18:52] "GET /add_customer HTTP/1.1" 200 -
-2024-12-15 02:19:11,039 - INFO - Customer added: Ahmed Mashaal
-2024-12-15 02:19:11,041 - INFO - 127.0.0.1 - - [15/Dec/2024 02:19:11] "[35m[1mPOST /customers HTTP/1.1[0m" 201 -
-2024-12-15 02:23:11,574 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-15 02:23:11,575 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 02:59:41,069 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 02:59:44,308 - INFO - Accessed homepage.
+2024-12-15 02:59:44,312 - INFO - 127.0.0.1 - - [15/Dec/2024 02:59:44] "GET / HTTP/1.1" 200 -
+2024-12-15 02:59:45,619 - INFO - Accessed Sell Car page.
+2024-12-15 02:59:45,622 - INFO - 127.0.0.1 - - [15/Dec/2024 02:59:45] "GET /sell_car HTTP/1.1" 200 -
+2024-12-15 03:00:00,046 - INFO - Car sold: Vehicle ID 1 to Customer ID 6
+2024-12-15 03:00:00,047 - INFO - 127.0.0.1 - - [15/Dec/2024 03:00:00] "[32mPOST /sell_car HTTP/1.1[0m" 302 -
+2024-12-15 03:00:00,054 - INFO - Accessed Sell Car page.
+2024-12-15 03:00:00,054 - INFO - 127.0.0.1 - - [15/Dec/2024 03:00:00] "GET /sell_car HTTP/1.1" 200 -
