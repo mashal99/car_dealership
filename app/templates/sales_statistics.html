@@ -1,0 +1,40 @@
+{% extends "home.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Sales Statistics</h2>
+    <form method="POST" action="/sales_statistics" class="mt-4">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="start_date" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" required>
+            </div>
+            <div class="col-md-6">
+                <label for="end_date" class="form-label">End Date</label>
+                <input type="date" class="form-control" id="end_date" name="end_date" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-warning mt-3">Get Statistics</button>
+    </form>
+    <table class="table table-striped mt-5">
+        <thead>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Cars Sold</th>
+                <th>Total Profit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stat in stats %}
+            <tr>
+                <td>{{ stat.make }}</td>
+                <td>{{ stat.model }}</td>
+                <td>{{ stat.cars_sold }}</td>
+                <td>${{ stat.total_profit }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

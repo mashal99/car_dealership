@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, render_template
+from flask import Blueprint, request, jsonify, render_template, redirect, url_for
 from app.models import db, Customer, Vehicle, ServiceAppointment, SalesStats
 from datetime import datetime
 
@@ -57,6 +57,25 @@ def handle_add_customer():
         db.session.commit()
         return render_template('add_customer.html', message="Customer added successfully!")
     return render_template('add_customer.html')
+
+@bp.route('/schedule_service', methods=['GET', 'POST'])
+def schedule_service_page():
+    """Display and handle the service scheduling page."""
+    if request.method == 'POST':
+        # Handle form submission for scheduling a service
+        data = request.form
+        appointment = ServiceAppointment(
+            appt_date=data['appt_date'],
+            arrival_time=data['arrival_time'],
+            service_customer_id=data['service_customer_id'],
+            vehicle_serviced_id=data['vehicle_serviced_id'],
+            created_at=datetime.now(),
+            updated_at=datetime.now()
+        )
+        db.session.add(appointment)
+        db.session.commit()
+        return redirect('/schedule_service')  # Redirect after form submission
+    return render_template('schedule_service.html')
 
 @bp.route('/sell_car', methods=['POST'])
 def sell_car():
